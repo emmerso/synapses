@@ -113,7 +113,7 @@ li:hover .has-dropdown svg, li.open .has-dropdown svg{transform:rotate(180deg);}
 .mobile-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
 /* hero */
-.hero{position:relative;min-height:620px;display:flex;align-items:center;background-image:linear-gradient(90deg,rgba(242,244,251,.98) 0%,rgba(242,244,251,.92) 45%,rgba(242,244,251,.72) 100%),url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=80');background-position:center;background-size:cover;overflow:hidden;}
+/* .hero{position:relative;min-height:620px;display:flex;align-items:center;background-image:linear-gradient(90deg,rgba(242,244,251,.98) 0%,rgba(242,244,251,.92) 45%,rgba(242,244,251,.72) 100%),url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=80');background-position:center;background-size:cover;overflow:hidden;} */
 .ring-decor{position:absolute;right:-180px;top:50%;transform:translateY(-50%);width:680px;height:680px;pointer-events:none;}
 .ring-decor.left{right:auto;left:-180px;}
 .ring-decor .ring{position:absolute;inset:0;margin:auto;border-radius:50%;border:1px solid rgba(143,185,213,.48);animation:ringPulse 3.6s ease-out infinite;}
