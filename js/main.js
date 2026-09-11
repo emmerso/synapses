@@ -191,3 +191,72 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+(function () {
+  const viewport = document.querySelector('.prod-track-viewport');
+  const track = document.getElementById('prodTrack');
+  const prevBtn = document.querySelector('.carousel-arrow.prev');
+  const nextBtn = document.querySelector('.carousel-arrow.next');
+  if (!track || !viewport) return;
+
+  // clone first/last card so the loop feels continuous
+  const realSlides = Array.from(track.children);
+  const firstClone = realSlides[0].cloneNode(true);
+  const lastClone = realSlides[realSlides.length - 1].cloneNode(true);
+  track.appendChild(firstClone);
+  track.insertBefore(lastClone, track.firstChild);
+
+  const slides = Array.from(track.children);
+  let index = 1; // start on the first real card
+  let isJumping = false;
+
+  function setActive() {
+    slides.forEach((el, i) => el.classList.toggle('is-active', i === index));
+  }
+
+  function moveTo(newIndex, animate = true) {
+    track.style.transition = animate ? 'transform 0.6s ease' : 'none';
+    const active = slides[newIndex];
+    const offset = viewport.offsetWidth / 2 - (active.offsetLeft + active.offsetWidth / 2);
+    track.style.transform = `translateX(${offset}px)`;
+    index = newIndex;
+    setActive();
+  }
+
+  function next() { if (!isJumping) moveTo(index + 1); }
+  function prev() { if (!isJumping) moveTo(index - 1); }
+
+  track.addEventListener('transitionend', () => {
+    if (index === slides.length - 1) {
+      isJumping = true;
+      moveTo(1, false);
+      requestAnimationFrame(() => { isJumping = false; });
+    } else if (index === 0) {
+      isJumping = true;
+      moveTo(slides.length - 2, false);
+      requestAnimationFrame(() => { isJumping = false; });
+    }
+  });
+
+  let timer = setInterval(next, 4000);
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 4000);
+  }
+
+  nextBtn.addEventListener('click', () => { next(); resetTimer(); });
+  prevBtn.addEventListener('click', () => { prev(); resetTimer(); });
+
+  slides.forEach((slide, i) => {
+    slide.addEventListener('click', (e) => {
+      if (i !== index) {
+        e.preventDefault();
+        moveTo(i);
+        resetTimer();
+      }
+    });
+  });
+
+  window.addEventListener('resize', () => moveTo(index, false));
+  window.addEventListener('load', () => moveTo(index, false));
+  moveTo(index, false);
+})();
