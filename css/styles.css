@@ -23,10 +23,12 @@
   margin: 0;
   padding: 0;
 }
-html,
-body {
+html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+body {
+  overflow-x: clip;
   overscroll-behavior-x: none;
   max-width: 100%;
 }
@@ -265,23 +267,6 @@ header {
   height: 58px;
   object-fit: contain;
   object-position: center;
-}
-.training-page .logo-image {
-  display: none;
-}
-.training-page .logo {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-.training-page .logo::before {
-  display: none;
-}
-.training-page footer .logo {
-  color: #fff;
-}
-.training-page .logo::after {
-  content: "SDA Consultancy";
 }
 .logo svg {
   width: 30px;
@@ -1162,6 +1147,46 @@ section {
   font-size: 1.15rem;
   margin-bottom: 8px;
 }
+.team-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.team-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--purple) 100%);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  box-shadow: 0 8px 16px -8px rgba(12, 34, 84, 0.55);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+.team-badge:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, var(--purple) 0%, var(--navy) 100%);
+  box-shadow: 0 14px 24px -8px rgba(12, 34, 84, 0.7);
+}
+.team-badge:hover::before {
+  background: #fff;
+}
+.team-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--amber);
+  transition: background 0.25s var(--ease);
+}
 .team-profile-body p {
   color: var(--ink-soft);
   font-size: 0.9rem;
@@ -1820,6 +1845,10 @@ footer .logo em {
     border-bottom: 0;
     color: var(--ink);
     font-size: 0.94rem;
+  }
+  li:hover .dropdown,
+  li.open .dropdown {
+    transform: none;
   }
   li.open .dropdown {
     max-height: 300px;

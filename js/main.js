@@ -4,10 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  if (window.location.pathname.endsWith('/training.html')) {
-    document.body.classList.add('training-page');
-  }
-
   /* ---------- mobile nav ---------- */
   const toggle = document.querySelector('.mobile-toggle');
   const navLinks = document.querySelector('.nav-links');
