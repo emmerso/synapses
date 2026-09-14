@@ -1128,6 +1128,13 @@ section {
   border-radius: 16px;
   background: #fff;
   box-shadow: var(--shadow);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+}
+.team-profile:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 46px -20px rgba(12, 34, 84, 0.45);
+  border-color: var(--purple);
 }
 .team-profile .team-photo {
   margin: 0;
@@ -1135,17 +1142,44 @@ section {
   filter: none;
   aspect-ratio: 4/5;
   background: #f5f7fb;
+  overflow: hidden;
 }
 .team-profile .team-photo img {
   height: 100%;
   object-fit: contain;
+  transition: transform 0.5s var(--ease);
+}
+.team-profile:hover .team-photo img {
+  transform: scale(1.07);
 }
 .team-profile-body {
   padding: 22px;
 }
 .team-profile-body h3 {
-  font-size: 1.15rem;
-  margin-bottom: 8px;
+  display: inline-block;
+  position: relative;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  letter-spacing: 0.01em;
+  background: linear-gradient(115deg, var(--navy) 15%, var(--purple) 60%, var(--amber-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.team-profile-body h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 34px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--navy), var(--purple));
+  transition: width 0.45s var(--ease);
+}
+.team-profile:hover .team-profile-body h3::after {
+  width: 100%;
 }
 .team-badges {
   display: flex;
@@ -1159,7 +1193,7 @@ section {
   gap: 6px;
   padding: 6px 14px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--navy) 0%, var(--purple) 100%);
+  background: linear-gradient(98deg, #274c83 0%, #5b6478 100%);
   color: #fff;
   font-size: 0.7rem;
   font-weight: 700;
